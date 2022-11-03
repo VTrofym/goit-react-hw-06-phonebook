@@ -6,7 +6,6 @@ const initialState = {
 }
 
 export const contactsReduser = (state = initialState, action) => {
-    console.log(state);
   switch (action.type) {
 
     case addContact:

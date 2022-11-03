@@ -7,13 +7,12 @@ import { Filter } from 'components/Filter';
 import css from './App.module.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContactAction } from 'redux/contacts/action';
+import { addContactAction, deleteContactAction } from 'redux/contacts/action';
 const ID_LOCAL_KEY = 'active-id';
 
 export const App = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts);
-  console.log('contacts :>> ', contacts);
   // const [contacts, setContacts] = useState([
   //   { id: '1', name: 'John Bold', number: '(067)-323-43-43' },
   //   { id: '2', name: 'Jane Gold', number: '(066)-123-24-43' },
@@ -56,6 +55,7 @@ export const App = () => {
   };
 
   const deleteContact = event => {
+    dispatch(deleteContactAction(event.target.id));
     // setContacts(prevContact => {
     //   return prevContact.filter(contact => contact.id !== event.target.id);
     // });
