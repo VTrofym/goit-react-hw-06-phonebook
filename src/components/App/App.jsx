@@ -1,20 +1,21 @@
-import { ContactList } from 'components/ContactList';
-import { nanoid } from 'nanoid';
-
-import { ContactForm } from 'components/ContactForm';
-import { Filter } from 'components/Filter';
-import css from './App.module.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
+import { ContactList } from 'components/ContactList';
+import { ContactForm } from 'components/ContactForm';
+import { Filter } from 'components/Filter';
 import {
   addContactAction,
   deleteContactAction,
   filterContactAction,
 } from 'redux/contacts/action';
+import css from './App.module.css';
+
 const ID_LOCAL_KEY = 'active-id';
 
 export const App = () => {
   const dispatch = useDispatch();
+
   const contacts = useSelector(state => state.contacts);
   const filter = useSelector(state => state.filter);
 
@@ -40,18 +41,8 @@ export const App = () => {
   };
 
   const deleteContact = event => {
-    dispatch(deleteContactAction(event.target.id));
-  };
-
-  const filterContact = event => {
-    dispatch(filterContactAction(event.currentTarget.value));
-  };
-
-  const getVisibleContacts = () => {
-    const normalisedFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalisedFilter)
-    );
+    const { id } = event.target;
+    dispatch(deleteContactAction(id));
   };
 
   return (
@@ -59,11 +50,8 @@ export const App = () => {
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addContact} />
       <h2>Contacts</h2>
-      <Filter onChange={filterContact} value={filter} />
-      <ContactList
-        contacts={getVisibleContacts()}
-        onDeleteContact={deleteContact}
-      />
+      <Filter />
+      <ContactList onDeleteContact={deleteContact} />
     </div>
   );
 };
