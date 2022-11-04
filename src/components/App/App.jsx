@@ -26,9 +26,9 @@ export const App = () => {
 
   return (
     <div className={css.allContent}>
-      <h1>Phonebook</h1>
+      <h1 className={css.title}>Phonebook</h1>
       <ContactForm />
-      <h2>Contacts</h2>
+      <h2 className={css.contacts}>Contacts</h2>
       <Filter />
       <ContactList />
     </div>

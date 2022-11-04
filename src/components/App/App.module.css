@@ -2,5 +2,15 @@
   max-width: 350px;
   margin-left: auto;
   margin-right: auto;
+  background-color: rgba(0, 255, 255, 0.333);
 }
 
+.title{
+  margin: 15px 0;
+  text-align: center;
+}
+
+.contacts{
+  margin: 15px 0;
+  text-align: center;
+}

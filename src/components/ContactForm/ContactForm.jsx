@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import css from './ContactForm.module.css';
-import { addContactAction } from 'redux/contacts/sliceContacts';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
+import css from './ContactForm.module.css';
+import { addContactAction } from 'redux/contacts/sliceContacts';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -45,7 +45,7 @@ export const ContactForm = () => {
 
   return (
     <form className={css.boxInput} onSubmit={handleSubmit}>
-      <label className={css.titleName}>
+      <label>
         Name
         <br />
         <input

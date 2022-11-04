@@ -12,10 +12,15 @@ export const Filter = () => {
   };
 
   return (
-    <label className={css.filter}>
+    <label className={css.label}>
       Find contacts by name
       <br />
-      <input type="text" value={value} onChange={filterContact} />
+      <input
+        className={css.input}
+        type="text"
+        value={value}
+        onChange={filterContact}
+      />
     </label>
   );
 };
