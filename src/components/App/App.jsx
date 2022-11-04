@@ -1,22 +1,17 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
+import { useSelector } from 'react-redux';
+
 import { ContactList } from 'components/ContactList';
 import { ContactForm } from 'components/ContactForm';
 import { Filter } from 'components/Filter';
-import {
-  addContactAction,
-  deleteContactAction,
-} from 'redux/contacts/sliceContacts';
+
+import { getContacts } from 'redux/contacts/selectors';
 
 import css from './App.module.css';
-import { getContacts } from 'redux/contacts/selectors';
 
 const ID_LOCAL_KEY = 'active-id';
 
 export const App = () => {
-  const dispatch = useDispatch();
-
   const contacts = useSelector(getContacts);
 
   useEffect(() => {
@@ -29,29 +24,13 @@ export const App = () => {
     localStorage.setItem(ID_LOCAL_KEY, JSON.stringify(contacts));
   }, [contacts]);
 
-  const addContact = (name, number) => {
-    if (
-      contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
-      )
-    ) {
-      return alert(`${name} is already in contacts!`);
-    }
-    dispatch(addContactAction({ name, number, id: nanoid() }));
-  };
-
-  const deleteContact = event => {
-    const { id } = event.target;
-    dispatch(deleteContactAction(id));
-  };
-
   return (
     <div className={css.allContent}>
       <h1>Phonebook</h1>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm />
       <h2>Contacts</h2>
       <Filter />
-      <ContactList onDeleteContact={deleteContact} />
+      <ContactList />
     </div>
   );
 };
