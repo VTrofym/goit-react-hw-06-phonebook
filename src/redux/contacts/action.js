@@ -14,4 +14,3 @@ export const deleteContactAction = payload => ({
   type: deleteContact,
   payload
 })
-
