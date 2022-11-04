@@ -4,15 +4,20 @@ import { nanoid } from 'nanoid';
 import { ContactList } from 'components/ContactList';
 import { ContactForm } from 'components/ContactForm';
 import { Filter } from 'components/Filter';
-import { addContactAction, deleteContactAction } from 'redux/contacts/action';
+import {
+  addContactAction,
+  deleteContactAction,
+} from 'redux/contacts/sliceContacts';
+
 import css from './App.module.css';
+import { getContacts } from 'redux/contacts/selectors';
 
 const ID_LOCAL_KEY = 'active-id';
 
 export const App = () => {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(getContacts);
 
   useEffect(() => {
     const savedContacts = JSON.parse(localStorage.getItem(ID_LOCAL_KEY));
