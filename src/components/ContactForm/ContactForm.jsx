@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
 import { addContactAction } from 'redux/contacts/sliceContacts';
@@ -7,7 +7,6 @@ import { addContactAction } from 'redux/contacts/sliceContacts';
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const allContacts = useSelector(state => state.contacts.contacts);
   const dispatch = useDispatch();
 
   const handleChange = event => {
@@ -33,13 +32,6 @@ export const ContactForm = () => {
   };
 
   const addContact = (name, number) => {
-    if (
-      allContacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
-      )
-    ) {
-      return alert(`${name} is already in contacts!`);
-    }
     dispatch(addContactAction({ name, number, id: nanoid() }));
   };
 

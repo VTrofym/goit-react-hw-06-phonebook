@@ -8,7 +8,7 @@ export function ContactList() {
   const dispatch = useDispatch();
 
   const onDeleteContact = event => {
-    const { id } = event.target;
+    const { id } = event.currentTarget;
     dispatch(deleteContactAction(id));
   };
 
